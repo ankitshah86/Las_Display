@@ -8,8 +8,12 @@
     tools:context=".LasPlot"
     tools:showIn="@layout/activity_las_plot">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/plotCanvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+    <com.example.test2.canvasView
+        android:id="@+id/testCanvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
