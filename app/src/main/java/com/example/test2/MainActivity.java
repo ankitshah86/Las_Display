@@ -11,6 +11,15 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +41,59 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,LandingPage.class));
             }
         });
+
+        Button exitButton = findViewById(R.id.exit);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+               //It seems that either one of these approaches should work just fine
+                 finish();
+                //System.exit(0);
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        });
+
+
+        Button helpButton = findViewById(R.id.help);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,HelpPage.class));
+            }
+        });
+
+        Button openLasFileButton = findViewById(R.id.openLasFile);
+        openLasFileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this,OpenLasPage.class));
+
+                File f = new File("sdcard/Download/8-32IN.LAS");
+               // File f  = new File("C:\\Users\\Ankit\\AndroidStudioProjects\\test2\\app\\src\\main\\res\\values\\colors.xml");
+              Log.d("File Exists : ",String.valueOf(f.exists()));
+             // Log.d("Canonical Path",String.valueOf(f.getCanonicalPath()));
+              String line;
+             /* try{
+
+                  FileReader rdr = new FileReader(f.getName());
+                  BufferedReader buf = new BufferedReader(rdr);
+
+                  while ((line = buf.readLine()) != null){
+                      Log.d("Las File", line);
+                  }
+
+              }
+              catch (FileNotFoundException ex) {
+                  System.out.println(ex);
+              }
+              catch (java.io.IOException ex) {
+                  System.out.println(ex);
+              }*/
+
+            }
+        });
+
     }
 
     @Override
