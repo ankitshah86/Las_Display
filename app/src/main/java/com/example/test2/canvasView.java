@@ -28,13 +28,16 @@ public class canvasView extends View {
         super(context, attrs);
         this.context = context;
         path = new Path();
-        path.lineTo(0,0);
-        path.lineTo(500,500);
-        path.lineTo(1000,1000);
+       // path.lineTo(0,0);
+       // path.lineTo(500,500);
+       // path.lineTo(1000,1000);
 
         paint = new Paint();
+        paint.setAntiAlias(true);
         paint.setColor(Color.rgb(255,0,0));
+        paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10);
+        path.setFillType(Path.FillType.WINDING);
 
     }
 
@@ -49,7 +52,11 @@ public class canvasView extends View {
     public boolean onTouchEvent(MotionEvent event) {
 
         Log.d("mouse Events",String.valueOf( event.getX())+ String.valueOf(event.getY())) ;
-        path.lineTo(event.getX(),event.getY());
+
+        if(event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP)
+        path.moveTo(event.getX(),event.getY());
+        else if(event.getAction() == MotionEvent.ACTION_MOVE)
+            path.lineTo(event.getX(),event.getY());
         invalidate();
         //return super.onTouchEvent(event);
         return true;
