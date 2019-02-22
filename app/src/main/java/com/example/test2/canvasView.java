@@ -32,6 +32,7 @@ public class canvasView extends View {
        // path.lineTo(500,500);
        // path.lineTo(1000,1000);
 
+
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setColor(Color.rgb(255,0,0));
@@ -39,13 +40,30 @@ public class canvasView extends View {
         paint.setStrokeWidth(10);
         path.setFillType(Path.FillType.WINDING);
 
+        paint.setColor(Color.rgb(125,125,125));
+        paint.setStrokeWidth(2);
+        for(int i = 0;i < 10; i++ ){
+            path.moveTo(i*50,0);
+            path.lineTo(i*50,4000);
+        }
+        invalidate();
+
+        paint.setStrokeWidth(10);
+        paint.setAntiAlias(true);
+        paint.setColor(Color.rgb(0,0,255));
+
+        for(int i = 0; i < 100; i++){
+            if(i == 0) path.moveTo(((float)Math.random()) * 400,i * 40 );
+            path.lineTo(((float)Math.random()) * 500,i * 40 );
+        }
+        invalidate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         canvas.drawPath(path,paint);
+        Log.d("Width and hwight" + String.valueOf(canvas.getWidth()),String.valueOf(canvas.getHeight()));
     }
 
     @Override
@@ -58,6 +76,8 @@ public class canvasView extends View {
         else if(event.getAction() == MotionEvent.ACTION_MOVE)
             path.lineTo(event.getX(),event.getY());
         invalidate();
+
+
         //return super.onTouchEvent(event);
         return true;
     }
