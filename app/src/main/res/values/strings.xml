@@ -12,4 +12,5 @@
     <string name="plot_las_file">Plot Las File</string>
     <string name="title_activity_las_display">LasDisplay</string>
     <string name="title_activity_las_plot">LasPlot</string>
+    <string name="title_activity_las_file_explorer">LasFileExplorer</string>
 </resources>

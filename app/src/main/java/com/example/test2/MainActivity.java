@@ -53,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button importLasFileButton = findViewById(R.id.importLasFile);
+        importLasFileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,LasFileExplorer.class));
+            }
+        });
 
         Button helpButton = findViewById(R.id.help);
         helpButton.setOnClickListener(new View.OnClickListener() {
